@@ -1,13 +1,11 @@
-```groovy
 pipeline {
-    agent none   // No global agent, each stage defines its own
+    agent none   // no global agent, each stage has its own
 
     stages {
         stage('NodeJS Stage') {
             agent {
                 docker {
-                    image 'node:18'   // You can change version if needed
-                    args '-v /tmp:/tmp'  // optional: mount tmp for caching
+                    image 'node:18'
                 }
             }
             steps {
@@ -19,7 +17,6 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.9.6-eclipse-temurin-17'
-                    args '-v /root/.m2:/root/.m2'  // optional: cache maven repo
                 }
             }
             steps {
@@ -28,4 +25,3 @@ pipeline {
         }
     }
 }
-```
