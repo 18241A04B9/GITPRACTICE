@@ -1,0 +1,27 @@
+pipeline {
+    agent none   // no global agent, each stage has its own
+
+    stages {
+        stage('NodeJS Stage') {
+            agent {
+                docker {
+                    image 'node:18'
+                }
+            }
+            steps {
+                echo 'Welcome to Jenkins Sanjeev (from NodeJS container)'
+            }
+        }
+
+        stage('Maven Stage') {
+            agent {
+                docker {
+                    image 'maven:3.9.6-eclipse-temurin-17'
+                }
+            }
+            steps {
+                echo 'Welcome to Jenkins Sanjeev (from Maven container)'
+            }
+        }
+    }
+}
